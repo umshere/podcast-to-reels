@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "podcast_to_reels"
+version = "0.1.0"
+description = "Automated pipeline to convert YouTube science podcasts into video reels"
+readme = "README.md"
+authors = [{name = "Your Name", email = "you@example.com"}]
+requires-python = ">=3.11"
+
+# Dependencies from requirements.txt
+# These may be pinned to mimic requirements
+
+dependencies = [
+    "yt-dlp>=2023.0.0",
+    "openai>=1.0.0",
+    "stability-sdk>=0.8.0",
+    "moviepy>=1.0.3,<2.0",
+    "ffmpeg-python>=0.2.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.28.0",
+    "pillow>=9.0.0",
+    "numpy>=1.22.0",
+    "tqdm>=4.64.0"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+

@@ -104,6 +104,13 @@ For a full diagram of how these components interact, see the [Architecture Diagr
 
 ### Running Tests
 
+Install the project in editable mode so that the `podcast_to_reels` package is
+available on your Python path:
+
+```bash
+pip install -e .
+```
+
 ```bash
 # Run all tests
 pytest
