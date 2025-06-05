@@ -1,3 +1,7 @@
+# Architecture Diagram
+
+This diagram illustrates how the major modules interact.  For a textual explanation, see the [Modules Overview](modules_overview.md) and the [README](../README.md).
+
 ```mermaid
 graph TD
     subgraph "Podcast-to-Reels Pipeline"
