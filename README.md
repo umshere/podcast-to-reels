@@ -21,6 +21,7 @@ This project provides an end-to-end solution for transforming dialogue-style sci
 - Detailed logging throughout the pipeline
 - Configurable output parameters (duration, resolution, etc.)
 - CI/CD integration via GitHub Actions
+- Optional Flask web interface
 
 ## Requirements
 
@@ -88,6 +89,16 @@ This will:
 python scripts/run_pipeline.py --url <YOUTUBE_URL> --duration 30 --start-time 10 --output custom_output.mp4
 ```
 
+### Web Interface
+
+You can also run the pipeline through a simple web UI powered by Flask. Start the server with:
+
+```bash
+FLASK_APP=web/app.py flask run
+```
+
+Then open `http://localhost:5000` in your browser and submit the YouTube URL and start/end times. See [Web Interface](docs/web_interface.md) for deployment details.
+
 ## Pipeline Architecture
 
 The pipeline consists of five main modules:
@@ -135,6 +146,8 @@ podcast-to-reels/
 │   └── utils/              # Shared utilities
 ├── scripts/                # Command-line scripts
 │   └── run_pipeline.py     # Main entry point
+├── web/                    # Flask web application
+│   └── templates/          # HTML templates
 ├── tests/                  # Unit tests
 ├── output/                 # Generated artifacts
 ├── docs/                   # Documentation
