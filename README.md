@@ -92,13 +92,13 @@ python scripts/run_pipeline.py --url <YOUTUBE_URL> --duration 30 --output custom
 
 The pipeline consists of five main modules:
 
-1. **Downloader**: Extracts audio from YouTube videos using yt-dlp
-2. **Transcriber**: Converts audio to text using OpenAI's Whisper API
-3. **Scene Splitter**: Chunks transcript and generates image prompts using GPT-4o-mini
-4. **Image Generator**: Creates images from prompts using Stability AI
-5. **Video Composer**: Assembles the final video using MoviePy and FFmpeg
+1. **Downloader** – [`downloader.py`](podcast_to_reels/downloader/downloader.py)
+2. **Transcriber** – [`transcriber.py`](podcast_to_reels/transcriber/transcriber.py)
+3. **Scene Splitter** – [`scene_splitter.py`](podcast_to_reels/scene_splitter/scene_splitter.py)
+4. **Image Generator** – [`image_generator.py`](podcast_to_reels/image_generator/image_generator.py)
+5. **Video Composer** – [`video_composer.py`](podcast_to_reels/video_composer/video_composer.py)
 
-![Architecture Diagram](docs/architecture_diagram.png)
+For a full diagram of how these components interact, see the [Architecture Diagram](docs/architecture_diagram.md).  Additional details for each module are provided in [Modules Overview](docs/modules_overview.md).
 
 ## Development
 
