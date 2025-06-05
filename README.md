@@ -21,6 +21,7 @@ This project provides an end-to-end solution for transforming dialogue-style sci
 - Detailed logging throughout the pipeline
 - Configurable output parameters (duration, resolution, etc.)
 - CI/CD integration via GitHub Actions
+- Optional Flask web interface
 
 ## Requirements
 
@@ -99,6 +100,7 @@ python -m web.app
 Open your browser to `http://localhost:5000` and submit a YouTube URL with start
 and duration values. The generated reel will appear in the `output/` folder.
 
+
 ## Pipeline Architecture
 
 The pipeline consists of five main modules:
@@ -146,6 +148,8 @@ podcast-to-reels/
 │   └── utils/              # Shared utilities
 ├── scripts/                # Command-line scripts
 │   └── run_pipeline.py     # Main entry point
+├── web/                    # Flask web application
+│   └── templates/          # HTML templates
 ├── tests/                  # Unit tests
 ├── output/                 # Generated artifacts
 ├── docs/                   # Documentation

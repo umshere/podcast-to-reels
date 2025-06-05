@@ -78,6 +78,7 @@ def download_audio(url, duration=60, start_time=0, output_dir="output", filename
             subprocess.run(trim_cmd, check=True)
 
             # Clean up temporary file if it still exists
+
             if os.path.exists(temp_path):
                 os.unlink(temp_path)
         else:
