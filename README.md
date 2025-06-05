@@ -39,7 +39,7 @@ This project provides an end-to-end solution for transforming dialogue-style sci
 git clone https://github.com/yourusername/podcast-to-reels.git
 cd podcast-to-reels
 
-# Install dependencies
+# Install dependencies (includes Flask>=3.0 for the optional web interface)
 pip install -r requirements.txt
 ```
 
@@ -53,7 +53,7 @@ cd podcast-to-reels
 # Install Poetry if you don't have it
 curl -sSL https://install.python-poetry.org | python3 -
 
-# Install dependencies
+# Install dependencies (includes Flask>=3.0 for the optional web interface)
 poetry install
 ```
 
@@ -162,7 +162,7 @@ podcast-to-reels/
 
 1. Create a new Replit project and import from GitHub
 2. Set environment variables in the Replit Secrets tab
-3. Install dependencies with `pip install -r requirements.txt`
+3. Install dependencies with `pip install -r requirements.txt` (installs Flask>=3.0)
 4. Run with `python scripts/run_pipeline.py --url <URL> --duration 30`
 
 ### Render Deployment
@@ -170,7 +170,7 @@ podcast-to-reels/
 1. Create a new Web Service on Render
 2. Connect to your GitHub repository
 3. Set environment variables in the Render dashboard
-4. Set the build command: `pip install -r requirements.txt`
+4. Set the build command: `pip install -r requirements.txt` (installs Flask>=3.0)
 5. Set the start command: `python scripts/run_pipeline.py --url <URL> --duration 30`
 
 ## Troubleshooting
