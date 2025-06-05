@@ -12,13 +12,14 @@ import tempfile
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def download_audio(url, duration=60, output_dir="output", filename="audio.mp3"):
+def download_audio(url, duration=60, start_time=0, output_dir="output", filename="audio.mp3"):
     """
     Download audio from a YouTube URL and optionally trim it to a specified duration.
     
     Args:
         url (str): YouTube URL to download from
         duration (int): Maximum duration in seconds (default: 60)
+        start_time (int): Starting point in seconds (default: 0)
         output_dir (str): Directory to save the audio file
         filename (str): Name of the output audio file
         
@@ -42,8 +43,8 @@ def download_audio(url, duration=60, output_dir="output", filename="audio.mp3"):
         video_duration = int(subprocess.check_output(duration_cmd, text=True).strip())
         logger.info(f"Video duration: {video_duration} seconds")
         
-        # If video is longer than requested duration, we'll need to trim it
-        needs_trimming = video_duration > duration
+        # Determine if we need to trim based on duration or start time
+        needs_trimming = video_duration > duration or start_time > 0
         
         if needs_trimming:
             # Download to a temporary file first
@@ -63,12 +64,12 @@ def download_audio(url, duration=60, output_dir="output", filename="audio.mp3"):
             subprocess.run(download_cmd, check=True)
             
             # Trim the audio using ffmpeg
-            logger.info(f"Trimming audio to {duration} seconds")
+            logger.info(f"Trimming audio: start at {start_time}s for {duration} seconds")
             trim_cmd = [
                 "ffmpeg",
                 "-i", temp_path,
-                "-ss", "0",  # Start from beginning
-                "-t", str(duration),  # Duration in seconds
+                "-ss", str(start_time),
+                "-t", str(duration),
                 "-c:a", "libmp3lame",
                 "-q:a", "0",  # Best quality
                 "-y",  # Overwrite output file

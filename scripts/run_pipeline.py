@@ -28,10 +28,16 @@ def parse_arguments():
         help="YouTube URL of the podcast"
     )
     parser.add_argument(
-        "--duration", 
-        type=int, 
-        default=60, 
+        "--duration",
+        type=int,
+        default=60,
         help="Duration of the output video in seconds (default: 60)"
+    )
+    parser.add_argument(
+        "--start-time",
+        type=int,
+        default=0,
+        help="Start time of the clip in seconds (default: 0)"
     )
     parser.add_argument(
         "--output", 
@@ -49,7 +55,7 @@ def main():
     print(f"Target duration: {args.duration} seconds")
     
     # Step 1: Download audio from YouTube
-    audio_path = download_audio(args.url, args.duration)
+    audio_path = download_audio(args.url, args.duration, args.start_time)
     print(f"Audio downloaded to: {audio_path}")
     
     # Step 2: Transcribe audio

@@ -74,7 +74,7 @@ poetry install
 ### Basic Usage
 
 ```bash
-python scripts/run_pipeline.py --url <YOUTUBE_URL> --duration 60
+python scripts/run_pipeline.py --url <YOUTUBE_URL> --duration 60 --start-time 0
 ```
 
 This will:
@@ -85,7 +85,7 @@ This will:
 ### Advanced Options
 
 ```bash
-python scripts/run_pipeline.py --url <YOUTUBE_URL> --duration 30 --output custom_output.mp4
+python scripts/run_pipeline.py --url <YOUTUBE_URL> --duration 30 --start-time 10 --output custom_output.mp4
 ```
 
 ## Pipeline Architecture
