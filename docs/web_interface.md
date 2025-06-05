@@ -15,7 +15,8 @@ This project includes a small Flask app that runs the entire pipeline from the b
    ```
 4. Open your browser to `http://localhost:5000` and submit a YouTube URL with the start and end times for the clip.
 
-The app will display progress messages and provide a link to download the generated reel when finished.
+The app displays progress messages and a short transcript preview before
+providing a link to download the generated reel when finished.
 
 ## Deployment
 

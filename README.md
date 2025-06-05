@@ -91,14 +91,15 @@ python scripts/run_pipeline.py --url <YOUTUBE_URL> --duration 30 --start-time 10
 
 ### Web Interface
 
-You can also run the pipeline through a simple Flask web app:
+You can also run the pipeline through a Flask web app with a basic UI:
 
 ```bash
 python -m web.app
 ```
 
-Open your browser to `http://localhost:5000` and submit a YouTube URL with start
-and duration values. The generated reel will appear in the `output/` folder.
+Open your browser to `http://localhost:5000` and submit a YouTube URL along with
+start and end times. The page displays progress messages and a short transcript
+preview, then provides a download link for the final reel in `output/web/`.
 
 
 ## Pipeline Architecture
