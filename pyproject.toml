@@ -7,6 +7,7 @@ name = "podcast_to_reels"
 version = "0.1.0"
 description = "Automated pipeline to convert YouTube science podcasts into video reels"
 readme = "README.md"
+license = {file = "LICENSE"}
 authors = [{name = "Your Name", email = "you@example.com"}]
 requires-python = ">=3.11"
 
