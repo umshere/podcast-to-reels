@@ -6,14 +6,13 @@ import os
 import logging
 from pathlib import Path
 import numpy as np
-from moviepy.editor import (
-    AudioFileClip, 
-    ImageClip, 
-    concatenate_videoclips, 
+from moviepy import (
+    AudioFileClip,
+    ImageClip,
+    concatenate_videoclips,
     CompositeVideoClip,
     TextClip
 )
-from moviepy.video.fx.resize import resize
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -42,19 +41,19 @@ def compose_video(audio_path, image_paths, scenes, output_path="output/reel.mp4"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     logger.info(f"Composing video from {len(image_paths)} images and audio")
-    
+
     try:
-        # Load audio
-        logger.info(f"Loading audio: {audio_path}")
-        audio_clip = AudioFileClip(audio_path)
-        
-        # Create video clips from images
-        video_clips = []
-        
-        # Ensure we have at least one image
+        # Ensure we have at least one image before loading audio
         if not image_paths:
             logger.error("No images provided for video composition")
             raise ValueError("No images provided for video composition")
+
+        # Load audio
+        logger.info(f"Loading audio: {audio_path}")
+        audio_clip = AudioFileClip(audio_path)
+
+        # Create video clips from images
+        video_clips = []
         
         # Match images to scenes based on order
         # If we have fewer images than scenes, we'll reuse the last image
@@ -72,14 +71,11 @@ def compose_video(audio_path, image_paths, scenes, output_path="output/reel.mp4"
             img_clip = ImageClip(image_path, duration=duration)
             
             # Resize to fit the target resolution while maintaining aspect ratio
-            img_clip = resize(img_clip, width=resolution[0])
+            # Use the resize method directly to avoid calling MoviePy's fx
+            img_clip = img_clip.resize(width=resolution[0])
             
-            # Center the image vertically
-            img_height = img_clip.size[1]
-            y_position = max(0, (resolution[1] - img_height) // 2)
-            
-            # Position the image
-            img_clip = img_clip.set_position(("center", y_position))
+            # Center the image
+            img_clip = img_clip.set_position("center")
             
             # Set start time to match the audio
             img_clip = img_clip.set_start(scene.start_time)
@@ -108,11 +104,11 @@ def compose_video(audio_path, image_paths, scenes, output_path="output/reel.mp4"
         # Concatenate all clips
         logger.info("Concatenating video clips")
         final_clip = CompositeVideoClip(video_clips, size=resolution)
-        final_clip = final_clip.set_duration(total_duration)
+        final_clip.set_duration(total_duration)
         
         # Add audio
         logger.info("Adding audio to video")
-        final_clip = final_clip.set_audio(audio_clip)
+        final_clip.set_audio(audio_clip)
         
         # Write output file
         logger.info(f"Writing video to {output_path}")

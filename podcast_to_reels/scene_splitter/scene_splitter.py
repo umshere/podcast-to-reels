@@ -152,8 +152,7 @@ def split_scenes(transcript_path, max_words_per_scene=20, output_dir="output", f
                 
             except Exception as e:
                 logger.error(f"Error generating prompt for scene {i+1}: {e}")
-                # Provide a fallback prompt based on the scene text
-                scene.prompt = f"Scientific illustration of: {scene.text}"
+                raise
         
         # Save scenes to JSON file
         with open(output_path, "w") as f:
